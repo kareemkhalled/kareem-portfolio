@@ -119,7 +119,7 @@
 
 <script>
   if (sessionStorage.getItem('kk_auth') === '1') {
-    window.location.replace('index.html');
+    window.location.replace('/kareem-portfolio/index.html');
   }
 
   document.addEventListener('keydown', function(e) {
@@ -131,7 +131,7 @@
     var p = document.getElementById('pass').value.trim();
     if (u === 'kareemkhaled' && p === 'kkdev2025') {
       sessionStorage.setItem('kk_auth', '1');
-      window.location.replace('index.html');
+      window.location.replace('/kareem-portfolio/index.html');
     } else {
       document.getElementById('err').style.display = 'block';
     }
