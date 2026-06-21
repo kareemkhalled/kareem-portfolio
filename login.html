@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Login — Kareem Khaled</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --navy: #0a192f;
+    --navy-light: #112240;
+    --slate: #8892b0;
+    --white: #ccd6f6;
+    --cyan: #64ffda;
+    --cyan-dim: rgba(100,255,218,0.12);
+    --cyan-border: rgba(100,255,218,0.25);
+    --border: #1e3a5f;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(100,255,218,0.06) 0%, transparent 70%);
+  }
+  .card {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 48px 40px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+  .logo {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    color: var(--cyan);
+    margin-bottom: 32px;
+    letter-spacing: 0.05em;
+  }
+  h1 {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+  .sub {
+    font-size: 14px;
+    color: var(--slate);
+    margin-bottom: 32px;
+  }
+  label {
+    display: block;
+    font-size: 12px;
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--cyan);
+    letter-spacing: 0.08em;
+    margin-bottom: 8px;
+  }
+  input {
+    width: 100%;
+    background: var(--navy);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+    color: var(--white);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    margin-bottom: 20px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus { border-color: var(--cyan); }
+  button {
+    width: 100%;
+    background: transparent;
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    padding: 13px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 4px;
+  }
+  button:hover { background: var(--cyan-dim); }
+  .error {
+    display: none;
+    color: #ff6b6b;
+    font-size: 13px;
+    margin-top: 14px;
+    text-align: center;
+    font-family: 'JetBrains Mono', monospace;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="logo">// kareem-portfolio</div>
+  <h1>Welcome back</h1>
+  <p class="sub">Enter your credentials to access the portfolio.</p>
+
+  <label>USERNAME</label>
+  <input type="text" id="user" placeholder="username" autocomplete="username" />
+
+  <label>PASSWORD</label>
+  <input type="password" id="pass" placeholder="••••••••" autocomplete="current-password" />
+
+  <button onclick="login()">ENTER →</button>
+  <div class="error" id="err">Invalid credentials. Try again.</div>
+</div>
+
+<script>
+  if (sessionStorage.getItem('kk_auth') === '1') {
+    window.location.replace('index.html');
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') login();
+  });
+
+  function login() {
+    var u = document.getElementById('user').value.trim();
+    var p = document.getElementById('pass').value.trim();
+    if (u === 'kareemkhaled' && p === 'kkdev2025') {
+      sessionStorage.setItem('kk_auth', '1');
+      window.location.replace('index.html');
+    } else {
+      document.getElementById('err').style.display = 'block';
+    }
+  }
+</script>
+</body>
+</html>
