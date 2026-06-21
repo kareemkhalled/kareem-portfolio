@@ -208,25 +208,20 @@
   }
   .about-photo {
     width: 220px; height: 260px;
-    background: var(--navy-light);
     border-radius: 6px;
     border: 2px solid var(--cyan-border);
-    display:flex; align-items:center; justify-content:center;
-    flex-direction:column; gap:12px;
     position:relative; overflow:hidden;
+    box-shadow: 4px 4px 0 var(--cyan-border);
   }
-  .about-photo::before {
-    content:'';
-    position:absolute; inset:0;
-    background: linear-gradient(135deg, var(--cyan-dim) 0%, transparent 60%);
-  }
-  .about-photo-initials {
-    font-family:'JetBrains Mono',monospace;
-    font-size: 48px; font-weight:700; color: var(--cyan);
-    position:relative; z-index:1;
+  .about-photo img {
+    width:100%; height:100%; object-fit:cover; object-position: center top;
+    display:block;
   }
   .about-photo-name {
-    font-size:12px; color: var(--slate); position:relative; z-index:1;
+    position:absolute; bottom:0; left:0; right:0;
+    background: linear-gradient(transparent, rgba(10,25,47,0.92));
+    padding: 24px 12px 10px;
+    font-size:12px; color: var(--slate);
     text-align:center;
   }
 
@@ -678,7 +673,7 @@
       </ul>
     </div>
     <div class="about-photo">
-      <div class="about-photo-initials">KK</div>
+      <img src="profile.jpg" alt="Kareem Khaled" />
       <div class="about-photo-name">Kareem Khaled<br><span style="color:#64ffda;font-size:11px;">Cairo, Egypt</span></div>
     </div>
   </div>
@@ -695,7 +690,7 @@
       <div class="exp-company">EMS — Engineering Management Systems · Cairo, Egypt</div>
       <div class="exp-desc">
         <ul>
-          <li>Designed and built 5+ live SCADA/IoT dashboards for Siemens-integrated industrial facilities including sewage stations, smart towers, warehouses, and compounds.</li>
+          <li>Designed and built 5+ live SCADA/IoT dashboards using <strong>Vue.js</strong> and React for Siemens-integrated industrial facilities including sewage stations, smart towers, warehouses, and compounds.</li>
           <li>Developed real-time data visualizations consuming PLC tag streams — pump heatmaps, 3D scatter charts, flow trends, and KPI analytics using ECharts GL.</li>
           <li>Built a Cesium.js 3D geospatial map for Cairo water infrastructure, integrating OpenStreetMap Nominatim search and real-time station status markers.</li>
           <li>Implemented AI-generated flow and pressure predictions integrated into the operational dashboard UI.</li>
@@ -703,6 +698,7 @@
         </ul>
       </div>
       <div class="exp-tags">
+        <span class="exp-tag">Vue.js</span>
         <span class="exp-tag">Next.js 15</span>
         <span class="exp-tag">React 19</span>
         <span class="exp-tag">TypeScript</span>
