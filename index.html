@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
@@ -558,6 +558,16 @@
   cursor: pointer; transition: background 0.2s;
 }
 .proj-dot.active { background: #64ffda; }
+.proj-arrow {
+  position: absolute; top: 50%; z-index: 3; transform: translateY(-50%);
+  background: rgba(10,25,47,0.8); border: 1px solid var(--cyan-border);
+  color: var(--cyan); font-size: 20px; width: 34px; height: 34px;
+  border-radius: 4px; cursor: pointer; display: flex; align-items: center;
+  justify-content: center; transition: background 0.2s; line-height: 1; padding: 0;
+  font-family: inherit; font-weight: bold;
+}
+.proj-arrow:hover { background: var(--cyan-dim); }
+.proj-prev { left: 8px; } .proj-next { right: 8px; }
 
 /* Featured project image */
 .proj-featured-visual { position: relative; overflow: hidden; }
@@ -1109,22 +1119,39 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     
     if (imgs.length > 1) {
+      // Add navigation arrows
+      const prevBtn = document.createElement('button');
+      prevBtn.className = 'proj-arrow proj-prev';
+      prevBtn.innerHTML = '&#8249;';
+      prevBtn.onclick = (e) => { e.stopPropagation(); navigateSlide(slider, -1); };
+      slider.appendChild(prevBtn);
+      
+      const nextBtn = document.createElement('button');
+      nextBtn.className = 'proj-arrow proj-next';
+      nextBtn.innerHTML = '&#8250;';
+      nextBtn.onclick = (e) => { e.stopPropagation(); navigateSlide(slider, 1); };
+      slider.appendChild(nextBtn);
+      
+      // Add dots
       const dots = document.createElement('div');
       dots.className = 'proj-dots';
       imgs.forEach((_, i) => {
         const dot = document.createElement('span');
         dot.className = 'proj-dot' + (i === 0 ? ' active' : '');
-        dot.onclick = () => goToSlide(slider, dots, i);
+        dot.onclick = (e) => { e.stopPropagation(); goToSlide(slider, dots, i); };
         dots.appendChild(dot);
       });
       slider.appendChild(dots);
       
       // Auto-advance
       let cur = 0;
-      setInterval(() => {
+      let autoTimer = setInterval(() => {
         cur = (cur + 1) % imgs.length;
         goToSlide(slider, dots, cur);
-      }, 3000);
+      }, 3500);
+      
+      // Store timer for cleanup
+      slider.autoTimer = autoTimer;
     }
     
     card.insertBefore(slider, card.firstChild);
@@ -1141,15 +1168,19 @@ document.addEventListener("DOMContentLoaded", function() {
   document.getElementById('lightbox').addEventListener('click', function() {
     this.style.display = 'none';
   });
-  
-  // Featured project image
-  const fp = document.getElementById('featured-img');
-  if (fp) fp.src = PI.ws_home;
 });
 
 function goToSlide(slider, dots, idx) {
   slider.querySelectorAll('.proj-slide').forEach((s,i) => s.classList.toggle('active', i===idx));
   dots.querySelectorAll('.proj-dot').forEach((d,i) => d.classList.toggle('active', i===idx));
+}
+
+function navigateSlide(slider, direction) {
+  const slides = slider.querySelectorAll('.proj-slide');
+  const dots = slider.querySelector('.proj-dots');
+  let currentIdx = Array.from(slides).findIndex(s => s.classList.contains('active'));
+  let newIdx = (currentIdx + direction + slides.length) % slides.length;
+  goToSlide(slider, dots, newIdx);
 }
 </script>
 <script>
