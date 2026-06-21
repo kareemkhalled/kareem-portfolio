@@ -722,8 +722,8 @@
     <div class="proj-card pf-card fade-in">
       <div class="pf-slider" id="pf-slider">
         <img class="pf-slide active" id="pf-s0" src="" alt="Home Dashboard">
-        <img class="pf-slide" id="pf-s1" src="" alt="3D Station View">
-        <img class="pf-slide" id="pf-s2" src="" alt="Analytics Dashboard">
+        <img class="pf-slide" id="pf-s1" src="" alt="Pump Heatmaps">
+        <img class="pf-slide" id="pf-s2" src="" alt="Water Hammer Monitoring">
         <img class="pf-slide" id="pf-s3" src="" alt="KPI Dashboard">
         <div class="pf-badge">✦ FEATURED PROJECT</div>
         <div class="pf-counter" id="pf-counter">1 / 4</div>
@@ -1157,12 +1157,12 @@ function goToSlide(slider, dots, idx) {
 <script>
 // Featured project slider
 (function(){
-  var keys=['ws_home','ws_3d','ws_dash','ws_kpi'];
+  var keys=['ws_home','ws_pumps','ws_hammer','ws_kpi'];
   var slides=document.querySelectorAll('#pf-slider .pf-slide');
   var dots=document.querySelectorAll('#pf-dots .pf-dot');
   var counter=document.getElementById('pf-counter');
   var cur=0,timer;
-  slides.forEach(function(s,i){ if(PI[keys[i]]) s.src='data:image/jpeg;base64,'+PI[keys[i]]; });
+  slides.forEach(function(s,i){ if(PI[keys[i]]) s.src=PI[keys[i]]; });
   function pfGo(idx){
     slides[cur].classList.remove('active'); dots[cur].classList.remove('active');
     cur=(idx+slides.length)%slides.length;
