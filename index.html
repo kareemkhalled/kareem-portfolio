@@ -722,18 +722,16 @@
     <div class="proj-card pf-card fade-in">
       <div class="pf-slider" id="pf-slider">
         <img class="pf-slide active" id="pf-s0" src="" alt="Home Dashboard">
-        <img class="pf-slide" id="pf-s1" src="" alt="Pump Heatmaps">
-        <img class="pf-slide" id="pf-s2" src="" alt="Water Hammer Monitoring">
-        <img class="pf-slide" id="pf-s3" src="" alt="KPI Dashboard">
+        <img class="pf-slide" id="pf-s1" src="" alt="Analytics Dashboard">
+        <img class="pf-slide" id="pf-s2" src="" alt="KPI Dashboard">
         <div class="pf-badge">✦ FEATURED PROJECT</div>
-        <div class="pf-counter" id="pf-counter">1 / 4</div>
+        <div class="pf-counter" id="pf-counter">1 / 3</div>
         <button class="pf-arrow pf-prev" onclick="pfNav(-1)">&#8249;</button>
         <button class="pf-arrow pf-next" onclick="pfNav(1)">&#8250;</button>
         <div class="pf-dots" id="pf-dots">
           <span class="pf-dot active" onclick="pfGo(0)"></span>
           <span class="pf-dot" onclick="pfGo(1)"></span>
           <span class="pf-dot" onclick="pfGo(2)"></span>
-          <span class="pf-dot" onclick="pfGo(3)"></span>
         </div>
       </div>
       <div class="pf-body">
@@ -1157,7 +1155,7 @@ function goToSlide(slider, dots, idx) {
 <script>
 // Featured project slider
 (function(){
-  var keys=['ws_home','ws_pumps','ws_hammer','ws_kpi'];
+  var keys=['ws_home','ws_dash','ws_kpi'];
   var slides=document.querySelectorAll('#pf-slider .pf-slide');
   var dots=document.querySelectorAll('#pf-dots .pf-dot');
   var counter=document.getElementById('pf-counter');
